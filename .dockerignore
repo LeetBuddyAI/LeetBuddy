@@ -1,0 +1,54 @@
+# Node modules
+node_modules/
+frontend/website/node_modules/
+frontend/extension/node_modules/
+backend/node_modules/
+backend/website/node_modules/
+backend/extension/node_modules/
+
+# Extension frontend - exclude from Docker builds
+frontend/extension/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Git and IDE
+.git/
+.gitignore
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment files
+.env
+.env.*
+!.env.example
+*.env
+!*.env.example
+
+# Build output
+frontend/website/dist/
+frontend/website/build/
+dist/
+build/
+
+# Development
+docker-compose.yml
+Dockerfile.dev
+
+# Documentation
+README.md
+*.md
+
+# Batch scripts (Windows)
+*.bat

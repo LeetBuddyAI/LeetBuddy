@@ -1,0 +1,133 @@
+/* index.css for global sytling */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=MedievalSharp&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap')
+layer(base);
+
+/* Tailwind imports */
+@import 'tailwindcss';
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+    font-family: "Inter";
+    color: var(--color-white-1);
+  }
+}
+
+/* Global variables here - like colours, standard padding*/
+:root {
+ --color-black-1: #0F0F0F;
+
+ --color-gray-1: #222222;
+ --color-gray-2: #262626;
+ --color-gray-3: #333333;
+ --color-gray-4: #353535;
+ --color-gray-5: #3C3C3C;
+ --color-gray-6: #4C4C57;
+
+ --color-white-1: #FFFFFF;
+ --color-white-2: #F5F5F5;
+ --color-white-3: #ECEBEB;
+ --color-white-4: #9F9F9F;
+
+ --color-blue-1: #0C69CC;
+ 
+ --color-green-1: #27B140;
+
+ --color-gold-1: #FFA116;
+ --color-gold-2: #7e510d;
+ --color-gold-3: #2C2110;
+
+ --color-red-1: #ff1616;
+ --color-red-2: #460d0d;
+
+ --corner-radius: 8px;
+ --transitionTime: 0s;
+}
+
+.app {
+    background-color: var(--color-black-1);
+}
+
+.tab-button {
+    border-radius: var(--corner-radius);
+    background-color: var(--color-gray-1);
+    color: var(--color-white-3); 
+    font-size: 14px;
+    padding: 0.4rem 0.75rem;
+    transition: var(--transitionTime);
+}
+
+.tab-button:hover {
+   background-color: var(--color-gray-3);
+}
+
+.donate-button, .donate-button * {
+  background-color: var(--color-gold-3);
+  color: var(--color-gold-1);
+}
+
+.donate-button:hover {
+  background-color: #453317;
+}
+
+.main-display-box {
+    border-radius: var(--corner-radius);
+    background-color: var(--color-gray-2);
+    overflow: hidden;
+}
+
+.main-display-box-header {
+    background-color: var(--color-gray-3);
+}
+
+/* Dev class - for showing borders on boxes */
+.show-border {
+    border: 2px solid pink;
+}
+
+.wrong-tab-display {
+    background-color: var(--color-black-1);
+    width: 400px;
+    height: 600px;
+    text-align: center;
+}
+
+/* Scroll bar */
+/* Style the scrollbar */
+::-webkit-scrollbar {
+    width: 4px; /* Width of the vertical scrollbar */
+    height: 12px; /* Height of the horizontal scrollbar */
+  }
+  
+  /* Style the track (the part the thumb slides within) */
+  ::-webkit-scrollbar-track {
+    background-color: var(--color-black-1); /* Light grey background */
+    border-radius: 10px;
+  }
+  
+  /* Style the thumb (the draggable part of the scrollbar) */
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--color-gray-5); /* Dark grey color */
+    border-radius: 10px;
+  }
+  
+  /* Hover effect for the thumb */
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Darker grey when hovered */
+  }
+
+  .leetbuddy-icon-shadow {
+    filter: drop-shadow(0 0 5rem #9f9f9fb3);
+  }

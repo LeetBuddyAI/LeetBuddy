@@ -1,0 +1,63 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      args:
+        VITE_SITE_URL: ${VITE_SITE_URL:-http://localhost}
+        VITE_VIDEO_URL: ${VITE_VIDEO_URL:-http://localhost/demo.mp4}
+        VITE_CHROME_STORE_URL: ${VITE_CHROME_STORE_URL}
+        WEBSITE_PORT: ${WEBSITE_PORT:-3001}
+        EXTENSION_PORT: ${EXTENSION_PORT:-3002}
+    environment:
+      - NODE_ENV=${NODE_ENV:-development}
+      - WEBSITE_PORT=${WEBSITE_PORT:-3001}
+      - EXTENSION_PORT=${EXTENSION_PORT:-3002}
+      - CHROME_EXTENSION_ORIGIN=${CHROME_EXTENSION_ORIGIN}
+      - REDIS_URL=${REDIS_URL}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - MODEL=${MODEL:-gemini-2.0-flash}
+      - INSTRUCTIONS=${INSTRUCTIONS:-"You are a helpful coding assistant for LeetCode problems."}
+    volumes:
+      - ./backend:/app/backend
+      - /app/backend/node_modules
+      - /app/frontend/website/node_modules
+      - website_dist:/app/frontend/website/dist
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "wget",
+          "-q",
+          "--spider",
+          "http://localhost:${WEBSITE_PORT:-3001}/health",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  nginx:
+    image: nginx:stable-alpine
+    ports:
+      - "${NGINX_PORT:-80}:80"
+    environment:
+      - WEBSITE_PORT=${WEBSITE_PORT:-3001}
+      - EXTENSION_PORT=${EXTENSION_PORT:-3002}
+    volumes:
+      - ./nginx/default.conf.dev:/etc/nginx/templates/default.conf.template:ro
+      - website_dist:/usr/share/nginx/html:ro
+    depends_on:
+      app:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+volumes:
+  website_dist:

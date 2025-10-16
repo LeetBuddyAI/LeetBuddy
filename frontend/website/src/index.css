@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import "tailwindcss";
+
+@theme {
+  /* Font */
+  --font-inter: "Inter", sans-serif;
+  /* Brand Orange */
+  --color-brand-orange: #f89f1b;
+  --color-brand-orange-hover: #e58a0e;
+
+  /* Brand Gray */
+  --color-brand-gray: #1a1a1a;
+  --color-brand-gray-secondary: #222222;
+  --color-brand-gray-icon: #2a2a2a;
+  --color-brand-gray-icon-secondary: #333333;
+}
+
+@layer base {
+  html,
+  body {
+    @apply font-inter bg-brand-gray text-gray-100 antialiased scroll-smooth overflow-x-hidden min-h-screen;
+  }
+}
+
+@utility redirect {
+  @apply text-gray-300 transition-colors;
+
+  &:hover {
+    @apply text-white;
+  }
+}
+
+@utility safe {
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
+@utility hero-section {
+  @apply relative flex items-center;
+  height: clamp(0px, 100svh, 1536px);
+}
+
+/* 2xl and up (1536px+) with height up to 624px */
+@media (min-width: 1536px) and (max-height: 624px) {
+  .hero-section {
+    height: auto;
+    padding: 6rem 0;
+  }
+}
+/* 2xl and up (1536px+) with height below 480px - reduce padding */
+@media (min-width: 1536px) and (max-height: 479px) {
+  .hero-section {
+    padding: 4rem 0;
+  }
+}
+
+/* xl only (1280px–1535px) with height up to 560px */
+@media (min-width: 1280px) and (max-width: 1535px) and (max-height: 560px) {
+  .hero-section {
+    height: auto;
+    padding: 6rem 0;
+  }
+}
+/* xl only (1280px–1535px) with height below 480px - reduce padding */
+@media (min-width: 1280px) and (max-width: 1535px) and (max-height: 479px) {
+  .hero-section {
+    padding: 4rem 0;
+  }
+}
+
+/* lg only (1024px–1279px) with height up to 960px */
+@media (min-width: 1024px) and (max-width: 1279px) and (max-height: 960px) {
+  .hero-section {
+    height: auto;
+    padding: 6rem 0;
+  }
+}
+/* lg only (1024px–1279px) with height below 480px - reduce padding */
+@media (min-width: 1024px) and (max-width: 1279px) and (max-height: 479px) {
+  .hero-section {
+    padding: 4rem 0;
+  }
+}
+
+/* md only (768px–1023px) with height up to 848px */
+@media (min-width: 768px) and (max-width: 1023px) and (max-height: 848px) {
+  .hero-section {
+    height: auto;
+    padding: 6rem 0;
+  }
+}
+/* md only (768px–1023px) with height below 480px - reduce padding */
+@media (min-width: 768px) and (max-width: 1023px) and (max-height: 479px) {
+  .hero-section {
+    padding: 4rem 0;
+  }
+}
+
+/* sm and below (up to 767px) with height up to 704px */
+@media (max-width: 767px) and (max-height: 704px) {
+  .hero-section {
+    height: auto;
+    padding: 4rem 0;
+  }
+}
+
+@utility responsive-404-height {
+  @apply flex flex-col;
+  min-height: clamp(0px, 100svh, 3072px);
+}
+
+/* When viewport height is under 768px, remove min-height constraint */
+@media (max-height: 767px) {
+  .responsive-404-height {
+    min-height: auto;
+  }
+}

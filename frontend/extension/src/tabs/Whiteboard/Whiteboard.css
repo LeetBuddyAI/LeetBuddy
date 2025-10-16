@@ -1,0 +1,26 @@
+.canvas-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+.whiteboard-canvas {
+
+}
+
+.tldraw-container * {
+    color: inherit; /* Reset color to default */
+}
+
+.whiteboard-ask-button * {
+    color: var(--color-white-4);
+    transition: var(--transitionTime);
+}
+
+.whiteboard-ask-button:hover * {
+    color: var(--color-white-1);
+}
+  
+  /* Canvas takes up all available space inside the container */

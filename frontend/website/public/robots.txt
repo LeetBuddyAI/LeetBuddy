@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /health
+
+Sitemap: https://leetbuddy.app/sitemap.xml

@@ -1,0 +1,49 @@
+services:
+  - type: web
+    name: leetbuddy
+    runtime: docker
+    plan: free
+    region: ohio
+    branch: main
+    repo: https://github.com/LeetBuddyAI/LeetBuddy
+    dockerContext: .
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    domains:
+      - leetbuddy.app
+    envVars:
+      # Core Configuration
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "10000"
+      - key: WEBSITE_PORT
+        value: "3001"
+      - key: EXTENSION_PORT
+        value: "3002"
+
+      # Redis Configuration
+      - key: REDIS_URL
+        sync: false
+
+      # API Keys and Secrets
+      - key: GEMINI_API_KEY
+        sync: false
+
+      # Chrome Extension Origin
+      - key: CHROME_EXTENSION_ORIGIN
+        sync: false
+
+      # Gemini Model Configuration
+      - key: MODEL
+        sync: false
+      - key: INSTRUCTIONS
+        sync: false
+
+      # Frontend Build Variables
+      - key: VITE_SITE_URL
+        sync: false
+      - key: VITE_VIDEO_URL
+        sync: false
+      - key: VITE_CHROME_STORE_URL
+        sync: false

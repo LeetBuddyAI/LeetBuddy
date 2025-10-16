@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "version": "1.1.1",
+  "name": "LeetBuddy - Your AI-Powered LeetCode Assistant",
+  "description": "AI tools for LeetCode: Hints, Chat, Whiteboard & more!",
+  "action": {
+    "default_icon": "favicon-Photoroom.png",
+    "default_popup": "index.html"
+  },
+  "permissions": ["scripting", "activeTab", "storage"],
+  "host_permissions": [
+    "https://leetcode.com/problems/*",
+    "__BACKEND_PERMISSIONS__"
+  ],
+  "icons": {
+    "16": "favicon-Photoroom.png",
+    "32": "favicon-Photoroom.png",
+    "128": "favicon-Photoroom.png"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  }
+}

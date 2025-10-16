@@ -1,0 +1,42 @@
+FROM node:22-alpine
+
+RUN apk add --no-cache wget
+
+WORKDIR /app
+
+# Install dependencies for website frontend only
+COPY backend/package*.json ./backend/
+COPY frontend/website/package*.json ./frontend/website/
+
+# Install all dependencies (including dev)
+RUN cd backend && npm install
+RUN cd frontend/website && npm install
+
+# Copy source code
+COPY backend/ ./backend/
+COPY frontend/website/ ./frontend/website/
+
+# Build website frontend with environment variables
+ARG VITE_SITE_URL=http://localhost
+ARG VITE_VIDEO_URL
+ARG VITE_CHROME_STORE_URL
+ENV VITE_SITE_URL=$VITE_SITE_URL
+ENV VITE_VIDEO_URL=$VITE_VIDEO_URL
+ENV VITE_CHROME_STORE_URL=$VITE_CHROME_STORE_URL
+RUN cd frontend/website && npm run build
+
+WORKDIR /app/backend
+
+# Build args for ports (with defaults)
+ARG WEBSITE_PORT=3001
+ARG EXTENSION_PORT=3002
+
+# Set environment variables
+ENV WEBSITE_PORT=$WEBSITE_PORT
+ENV EXTENSION_PORT=$EXTENSION_PORT
+ENV NODE_ENV=${NODE_ENV:-development}
+
+# Expose both backend ports
+EXPOSE $WEBSITE_PORT $EXTENSION_PORT
+
+CMD ["node", "index.js"]
