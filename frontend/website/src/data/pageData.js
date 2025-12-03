@@ -306,8 +306,8 @@ export const testimonials = [
     description: `"The edge case generator is a game-changer. It's helped me catch bugs in my solutions that I would have missed otherwise. Highly recommend!"`,
   },
   {
-    name: "Ahsan Mansoor",
-    role: "Software Engineer at Meta",
+    name: 'Brian "Affirm" Manomaisupat',
+    role: "Software Engineer at Red Bull Racing",
     description: `"I used LeetBuddy to help prepare for my technical interviews, and it made a huge difference. The whiteboard feature helped me grasp complex algorithms quickly."`,
   },
 ];
