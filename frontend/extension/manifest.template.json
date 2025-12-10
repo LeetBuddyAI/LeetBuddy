@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "version": "1.1.1",
+  "version": "1.1.2",
   "name": "LeetBuddy - Your AI-Powered LeetCode Assistant",
   "description": "AI tools for LeetCode: Hints, Chat, Whiteboard & more!",
   "action": {

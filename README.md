@@ -508,7 +508,7 @@ Key settings in `frontend/extension/public/manifest.json`:
 {
   "manifest_version": 3,
   "name": "LeetBuddy",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "permissions": ["activeTab", "storage"],
   "host_permissions": ["https://leetcode.com/*"],
   "content_security_policy": {
